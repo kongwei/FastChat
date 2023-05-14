@@ -712,6 +712,11 @@ if __name__ == "__main__":
         action="store_true",
         help="Add Google's Bard model",
     )
+    parser.add_argument(
+        "--root-path",
+        type=str,
+        help="Set root_path of gradio server",
+    )
     args = parser.parse_args()
     logger.info(f"args: {args}")
 
@@ -729,5 +734,5 @@ if __name__ == "__main__":
     demo.queue(
         concurrency_count=args.concurrency_count, status_update_rate=10, api_open=False
     ).launch(
-        server_name=args.host, server_port=args.port, share=args.share, max_threads=200
+        server_name=args.host, server_port=args.port, share=args.share, max_threads=200, root_path=args.root_path
     )
